@@ -1,5 +1,9 @@
 # AliyunUtil
 
+[![Build Status](https://semaphoreci.com/api/v1/ug0/aliyun_util/branches/master/shields_badge.svg)](https://semaphoreci.com/ug0/aliyun_util)
+![Hex.pm](https://img.shields.io/hexpm/v/aliyun_util.svg)
+
+
 Aliyun API utils
 
 ## Installation
@@ -10,7 +14,7 @@ by adding `aliyun_util` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:aliyun_util, "~> 0.1.0"}
+    {:aliyun_util, "~> 0.2.0"}
   ]
 end
 ```
