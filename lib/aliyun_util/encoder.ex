@@ -2,7 +2,7 @@ defmodule Aliyun.Util.Encoder do
   @doc """
     编码字符串：URL编码+POP特殊规则
   """
-  @spec encode_string(binary()) :: binary()
+  @spec encode_string(String.t()) :: String.t()
   def encode_string(string) do
     string
     |> URI.encode_www_form()
@@ -12,7 +12,7 @@ defmodule Aliyun.Util.Encoder do
   @doc """
     编码 requet: verb(GET|POST) + query_params
   """
-  @spec encode_request(binary(), map()) :: <<_::16, _::_*8>>
+  @spec encode_request(String.t(), map()) :: <<_::16, _::_*8>>
   def encode_request(verb, params) do
     verb <> "&" <> encode_string("/") <> "&" <> encode_params(params)
   end
@@ -20,7 +20,7 @@ defmodule Aliyun.Util.Encoder do
   @doc """
     编码 query params
   """
-  @spec encode_params(map()) :: binary()
+  @spec encode_params(map()) :: String.t()
   def encode_params(params) do
     params
     |> Map.delete("Signature")

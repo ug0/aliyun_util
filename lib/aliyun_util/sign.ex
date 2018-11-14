@@ -7,7 +7,7 @@ defmodule Aliyun.Util.Sign do
   @doc """
     签名字符串
   """
-  @spec sign(binary(), binary()) :: binary()
+  @spec sign(String.t(), String.t()) :: String.t()
   def sign(string_to_sign, key) do
     :crypto.hmac(:sha, key, string_to_sign)
     |> Base.encode64()
@@ -16,12 +16,12 @@ defmodule Aliyun.Util.Sign do
   @doc """
     签名 request
   """
-  @spec sign(binary(), map(), binary()) :: binary()
+  @spec sign(String.t(), map(), String.t()) :: String.t()
   def sign(verb, params = %{}, key) do
     sign(encode_request(verb, params), key)
   end
 
-  @spec gen_nounce(non_neg_integer()) :: binary()
+  @spec gen_nounce(non_neg_integer()) :: String.t()
   def gen_nounce(length \\ 16) do
     :crypto.strong_rand_bytes(length) |> Base.url_encode64() |> binary_part(0, length)
   end
