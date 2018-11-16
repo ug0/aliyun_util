@@ -1,7 +1,7 @@
 # AliyunUtil
 
 [![Build Status](https://semaphoreci.com/api/v1/ug0/aliyun_util/branches/master/shields_badge.svg)](https://semaphoreci.com/ug0/aliyun_util)
-![Hex.pm](https://img.shields.io/hexpm/v/aliyun_util.svg)
+[![Hex.pm](https://img.shields.io/hexpm/v/aliyun_util.svg)](https://hex.pm/packages/aliyun_util)
 
 
 Aliyun API utils
