@@ -9,7 +9,20 @@ defmodule Aliyun.Util.Time do
   """
   @spec gen_timestamp() :: String.t()
   def gen_timestamp do
+    gmt_now_iso8601()
+  end
+
+  @doc """
+  e.g.
+    "Tue, 27 Nov 2018 04:58:42 GMT"
+  """
+  def gmt_now do
     Timex.now("GMT")
-    |> Timex.format!("%Y-%m-%dT%H:%M:%SZ", :strftime)
+    |> Timex.format!("%a, %d %b %Y %H:%M:%S GMT", :strftime)
+  end
+
+  def gmt_now_iso8601 do
+    Timex.now("GMT")
+    |> Timex.format!("%FT%TZ", :strftime)
   end
 end

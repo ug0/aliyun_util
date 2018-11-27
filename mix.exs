@@ -4,7 +4,7 @@ defmodule AliyunUtil.MixProject do
   def project do
     [
       app: :aliyun_util,
-      version: "0.3.0",
+      version: "0.3.1",
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
       description: description(),
