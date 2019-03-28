@@ -3,8 +3,9 @@ defmodule Aliyun.Util.Encoder do
     编码字符串：URL编码+POP特殊规则
   """
   @spec encode_string(String.t()) :: String.t()
-  def encode_string(string) do
-    string
+  def encode_string(term) do
+    term
+    |> to_string()
     |> URI.encode_www_form()
     |> String.replace("+", "%20")
   end
