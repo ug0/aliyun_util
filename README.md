@@ -14,7 +14,7 @@ by adding `aliyun_util` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:aliyun_util, "~> 0.3.3"}
+    {:aliyun_util, "~> 0.3.4"}
   ]
 end
 ```
