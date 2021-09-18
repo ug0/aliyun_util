@@ -1,6 +1,12 @@
 defmodule Aliyun.Util.Encoder do
   @doc """
-    编码字符串：URL编码+POP特殊规则
+  编码字符串：URL编码+POP特殊规则。
+
+  ## Examples
+
+      iex> Aliyun.Util.Encoder.encode_string("foo bar")
+      "foo%20bar"
+
   """
   @spec encode_string(String.t()) :: String.t()
   def encode_string(term) do
@@ -11,7 +17,13 @@ defmodule Aliyun.Util.Encoder do
   end
 
   @doc """
-    编码 requet: verb(GET|POST) + query_params
+  编码 requet: verb(GET|POST) + query_params。
+
+  ## Examples
+
+      iex> Aliyun.Util.Encoder.encode_request("get", %{foo: "bar"})
+      "get&%2F&foo%3Dbar"
+
   """
   @spec encode_request(String.t(), map()) :: <<_::16, _::_*8>>
   def encode_request(verb, params) do
@@ -19,7 +31,13 @@ defmodule Aliyun.Util.Encoder do
   end
 
   @doc """
-    编码 query params
+  编码 query params。
+
+  ## Examples
+
+      iex> Aliyun.Util.Encoder.encode_params(%{foo: "bar"})
+      "foo%3Dbar"
+
   """
   @spec encode_params(map()) :: String.t()
   def encode_params(params) do
