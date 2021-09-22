@@ -1,6 +1,6 @@
 # AliyunUtil
 
-[![Build Status](https://travis-ci.org/ug0/aliyun_util.svg?branch=master)](https://travis-ci.org/ug0/aliyun_util)
+[![Build Status](https://app.travis-ci.com/ug0/aliyun_util.svg?branch=master)](https://app.travis-ci.com/ug0/aliyun_util)
 [![Module Version](https://img.shields.io/hexpm/v/aliyun_util.svg)](https://hex.pm/packages/aliyun_util)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/aliyun_util/)
 [![Total Download](https://img.shields.io/hexpm/dt/aliyun_util.svg)](https://hex.pm/packages/aliyun_util)
