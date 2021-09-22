@@ -40,8 +40,7 @@ defmodule Aliyun.Util.Sign do
 
   ## Examples
 
-      iex> Aliyun.Util.Sign.gen_nounce()
-      "Uv9IRJZ300XBeNPr"
+      iex> <<_::binary-size(16)>> = Aliyun.Util.Sign.gen_nounce()
 
   """
   @spec gen_nounce(non_neg_integer()) :: String.t()
