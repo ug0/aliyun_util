@@ -17,7 +17,7 @@ dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:aliyun_util, "~> 0.3.4"}
+    {:aliyun_util, "~> 0.3.5"}
   ]
 end
 ```
