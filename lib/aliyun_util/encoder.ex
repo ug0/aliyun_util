@@ -1,6 +1,6 @@
 defmodule Aliyun.Util.Encoder do
   @doc """
-  编码字符串：URL编码+POP特殊规则。
+  编码字符串：使用UTF-8字符集按照RFC3986的规则
 
   ## Examples
 
@@ -12,22 +12,25 @@ defmodule Aliyun.Util.Encoder do
   def encode_string(term) do
     term
     |> to_string()
-    |> URI.encode_www_form()
-    |> String.replace("+", "%20")
+    |> URI.encode(&URI.char_unreserved?/1)
   end
 
   @doc """
-  编码 requet: verb(GET|POST) + query_params。
+  编码URI：对URI中的每一部分（即被/分割开的字符串）进行编码
 
   ## Examples
 
-      iex> Aliyun.Util.Encoder.encode_request("get", %{foo: "bar"})
-      "get&%2F&foo%3Dbar"
+      iex> Aliyun.Util.Encoder.encode_uri("/foo bar/test/")
+      "/foo%20bar/test/"
 
   """
-  @spec encode_request(String.t(), map()) :: <<_::16, _::_*8>>
-  def encode_request(verb, params) do
-    verb <> "&" <> encode_string("/") <> "&" <> encode_params(params)
+  @spec encode_uri(String.t()) :: String.t()
+  def encode_uri(term) do
+    term
+    |> to_string()
+    |> String.split("/")
+    |> Stream.map(&encode_string/1)
+    |> Enum.join("/")
   end
 
   @doc """
@@ -35,19 +38,17 @@ defmodule Aliyun.Util.Encoder do
 
   ## Examples
 
-      iex> Aliyun.Util.Encoder.encode_params(%{foo: "bar"})
-      "foo%3Dbar"
+      iex> Aliyun.Util.Encoder.encode_params(%{"ImageId" => "win2019_1809_x64_dtc_zh-cn_40G_alibase_20230811.vhd", "RegionId" => "cn-shanghai"})
+      "ImageId=win2019_1809_x64_dtc_zh-cn_40G_alibase_20230811.vhd&RegionId=cn-shanghai"
 
   """
   @spec encode_params(map()) :: String.t()
   def encode_params(params) do
     params
-    |> Map.delete("Signature")
     |> Enum.sort()
     |> Stream.map(fn {k, v} ->
       encode_string(k) <> "=" <> encode_string(v)
     end)
     |> Enum.join("&")
-    |> encode_string()
   end
 end

@@ -32,8 +32,8 @@ defmodule Aliyun.Util.Time do
 
   """
   def gmt_now do
-    Timex.now("GMT")
-    |> Timex.format!("%a, %d %b %Y %H:%M:%S GMT", :strftime)
+    DateTime.now!("GMT")
+    |> Calendar.strftime("%a, %d %b %Y %H:%M:%S GMT")
   end
 
   @doc """
@@ -46,7 +46,8 @@ defmodule Aliyun.Util.Time do
 
   """
   def gmt_now_iso8601 do
-    Timex.now("GMT")
-    |> Timex.format!("%FT%TZ", :strftime)
+    DateTime.now!("Etc/UTC")
+    |> DateTime.truncate(:second)
+    |> DateTime.to_iso8601(:extended, 0)
   end
 end

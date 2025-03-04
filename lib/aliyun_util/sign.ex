@@ -2,37 +2,25 @@ defmodule Aliyun.Util.Sign do
   @moduledoc """
   签名相关。
   """
-  import Aliyun.Util.Encoder, only: [encode_request: 2]
+
+  def algorithm, do: "ACS3-HMAC-SHA256"
 
   @doc """
   签名字符串。
 
   ## Examples
 
-      iex> key = "da39a3ee5e6b4b0d3255bfef95601890afd80709"
-      iex> Aliyun.Util.Sign.sign("ug0", key)
-      "lT5/H+dMe7PnMcBTpfvTWzGWOKg="
+      iex> key = "YourAccessKeySecret"
+      iex> str_to_sign = "ACS3-HMAC-SHA256
+      ...>7ea06492da5221eba5297e897ce16e55f964061054b7695beedaac1145b1e259"
+      iex> Aliyun.Util.Sign.sign(str_to_sign, key)
+      "06563a9e1b43f5dfe96b81484da74bceab24a1d853912eee15083a6f0f3283c0"
 
   """
   @spec sign(String.t(), String.t()) :: String.t()
   def sign(string_to_sign, key) do
-    crypto_hmac(:sha, key, string_to_sign)
-    |> Base.encode64()
-  end
-
-  @doc """
-  签名 request。
-
-  ## Examples
-
-      iex> key = "da39a3ee5e6b4b0d3255bfef95601890afd80709"
-      iex> Aliyun.Util.Sign.sign("get", %{foo: "bar"}, key)
-      "E+z0VjVGET2NYVZjPrAz7Mep8Go="
-
-  """
-  @spec sign(String.t(), map(), String.t()) :: String.t()
-  def sign(verb, params = %{}, key) do
-    sign(encode_request(verb, params), key)
+    :crypto.mac(:hmac, :sha256, key, string_to_sign)
+    |> Base.encode16(case: :lower)
   end
 
   @doc """
@@ -46,17 +34,5 @@ defmodule Aliyun.Util.Sign do
   @spec gen_nounce(non_neg_integer()) :: String.t()
   def gen_nounce(length \\ 16) do
     :crypto.strong_rand_bytes(length) |> Base.url_encode64() |> binary_part(0, length)
-  end
-
-  # TODO remove when we require OTP 22.1+
-  # https://erlang.org/doc/apps/crypto/new_api.html
-  if Code.ensure_loaded?(:crypto) and function_exported?(:crypto, :mac, 4) do
-    defp hmac_fun(digest, key), do: &:crypto.mac(:hmac, digest, key, &1)
-  else
-    defp hmac_fun(digest, key), do: &:crypto.hmac(digest, key, &1)
-  end
-
-  defp crypto_hmac(method, key, body) do
-    hmac_fun(method, key).(body)
   end
 end

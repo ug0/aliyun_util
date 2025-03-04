@@ -1,14 +1,14 @@
-defmodule AliyunUtil.MixProject do
+defmodule Aliyun.Util.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/ug0/aliyun_util"
-  @version "0.3.5"
+  @version "0.4.0"
 
   def project do
     [
       app: :aliyun_util,
       version: @version,
-      elixir: "~> 1.7",
+      elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       docs: docs(),
@@ -25,7 +25,7 @@ defmodule AliyunUtil.MixProject do
   defp deps do
     [
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
-      {:timex, "~> 3.1"}
+      {:req, "~> 0.5.0"}
     ]
   end
 

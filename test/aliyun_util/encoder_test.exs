@@ -6,7 +6,7 @@ defmodule Aliyun.Util.EncoderTest do
 
   describe "encode_string/1" do
     test "encode string" do
-      string_to_encode = "Aa0-_.~\" +*&"
+      string_to_encode = ~s{Aa0-_.~" +*&}
       encoded_string = "Aa0-_.~%22%20%2B%2A%26"
 
       assert Encoder.encode_string(string_to_encode) == encoded_string
