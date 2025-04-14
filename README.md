@@ -1,6 +1,7 @@
 # AliyunUtil
 
 [![Run Tests](https://github.com/ug0/aliyun_util/actions/workflows/test.yml/badge.svg)](https://github.com/ug0/aliyun_util/actions/workflows/test.yml)
+[![Publish](https://github.com/ug0/aliyun_util/actions/workflows/publish.yml/badge.svg)](https://github.com/ug0/aliyun_util/actions/workflows/publish.yml)
 [![Module Version](https://img.shields.io/hexpm/v/aliyun_util.svg)](https://hex.pm/packages/aliyun_util)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/aliyun_util/)
 [![Total Download](https://img.shields.io/hexpm/dt/aliyun_util.svg)](https://hex.pm/packages/aliyun_util)

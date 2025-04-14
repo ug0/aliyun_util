@@ -52,7 +52,7 @@ jobs:
       - name: Authenticate with Hex
         env:
           HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
-        run: mix hex.config key $HEX_API_KEY
+        run: mix hex.config api_key $HEX_API_KEY
 
       - name: Publish to Hex
         env:
