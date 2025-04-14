@@ -1,6 +1,6 @@
 # AliyunUtil
 
-[![Build Status](https://app.travis-ci.com/ug0/aliyun_util.svg?branch=master)](https://app.travis-ci.com/ug0/aliyun_util)
+[![Run Tests](https://github.com/ug0/aliyun_util/actions/workflows/test.yml/badge.svg)](https://github.com/ug0/aliyun_util/actions/workflows/test.yml)
 [![Module Version](https://img.shields.io/hexpm/v/aliyun_util.svg)](https://hex.pm/packages/aliyun_util)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/aliyun_util/)
 [![Total Download](https://img.shields.io/hexpm/dt/aliyun_util.svg)](https://hex.pm/packages/aliyun_util)
@@ -17,7 +17,7 @@ dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:aliyun_util, "~> 0.3.5"}
+    {:aliyun_util, "~> 0.4.0"}
   ]
 end
 ```
