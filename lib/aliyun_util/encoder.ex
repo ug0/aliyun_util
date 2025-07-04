@@ -36,19 +36,37 @@ defmodule Aliyun.Util.Encoder do
   @doc """
   编码 query params。
 
+  ## Options
+
+  - `:strict_nil` - Defaults to `false`.
+
   ## Examples
 
       iex> Aliyun.Util.Encoder.encode_params(%{"ImageId" => "win2019_1809_x64_dtc_zh-cn_40G_alibase_20230811.vhd", "RegionId" => "cn-shanghai"})
       "ImageId=win2019_1809_x64_dtc_zh-cn_40G_alibase_20230811.vhd&RegionId=cn-shanghai"
+      iex> Aliyun.Util.Encoder.encode_params(%{"empty_value" => nil})
+      "empty_value="
+      iex> Aliyun.Util.Encoder.encode_params(%{"empty_value" => nil}, strict_nil: true)
+      "empty_value"
 
   """
-  @spec encode_params(map()) :: String.t()
-  def encode_params(params) do
+  @spec encode_params(map(), keyword()) :: String.t()
+  def encode_params(params, options \\ []) do
+    encoder =
+      case Keyword.get(options, :strict_nil, false) do
+        true ->
+          fn
+            {k, nil} -> encode_string(k)
+            {k, v} -> encode_string(k) <> "=" <> encode_string(v)
+          end
+
+        _ ->
+          fn {k, v} -> encode_string(k) <> "=" <> encode_string(v) end
+      end
+
     params
     |> Enum.sort()
-    |> Stream.map(fn {k, v} ->
-      encode_string(k) <> "=" <> encode_string(v)
-    end)
+    |> Stream.map(encoder)
     |> Enum.join("&")
   end
 end
