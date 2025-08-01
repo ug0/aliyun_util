@@ -18,7 +18,7 @@ dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:aliyun_util, "~> 0.4.1"}
+    {:aliyun_util, "~> 0.4.2"}
   ]
 end
 ```
@@ -30,6 +30,7 @@ Available utility helper functions:
 * `Aliyun.Util.Encoder`
 * `Aliyun.Util.Sign`
 * `Aliyun.Util.Time`
+* `Aliyun.Util.Header`
 
 ## Copyright and License
 
