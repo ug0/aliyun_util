@@ -25,7 +25,7 @@ defmodule Aliyun.Util.MixProject do
   defp deps do
     [
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
-      {:req, "~> 0.5.0"}
+      {:req, "~> 0.6.1"}
     ]
   end
 
